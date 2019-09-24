@@ -1,0 +1,8 @@
+#!/bin/bash
+
+read -p "Enter Peer Name: " id
+#change loop count
+for i in `seq 1 10`
+do
+	dd if=/dev/zero of=/home/sathyaveer27/Desktop/ABC/$id-file_$i-small.txt bs=10K count=1
+done
