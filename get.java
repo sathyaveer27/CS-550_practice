@@ -18,6 +18,7 @@ public class get
 		    skt = myServerSocket.accept();   
 		    System.out.println("A new client is connected : " + skt);
 		    ArrayList<String> titleList = new ArrayList<String>();
+		
 	 	    ObjectInputStream objectInput = new ObjectInputStream(skt.getInputStream()); 
 		    ObjectOutputStream objectOutput = new ObjectOutputStream(skt.getOutputStream());
 	       
@@ -31,15 +32,24 @@ public class get
 			}
 		    //sortedKey.putAll(map);
 		    //System.out.println(map.size());
-		    System.out.print(map);                    
+		    System.out.print(map);      
+		    skt.close();              
 		   //System.out.println(titleList.get(1));               
 		    System.out.println("\nAssigning new thread for this client"); 
-		    
-		    Thread t = new ClientHandler(skt, objectInput, objectOutput);
-		    t.start(); 
 
 
+		    	skt = myServerSocket.accept();   
+		    System.out.println("A new client is connected : " + skt);
+		    //ArrayList<String> titleList = new ArrayList<String>();
+		
+	 	    DataInputStream objectInput1 = new DataInputStream(skt.getInputStream()); 
+		    //DataOutputStream objectOutput1 = new DataOutputStream(skt.getOutputStream());
+			
+		     
+		    System.out.print("If in ");
+			String object1 = objectInput1.readUTF();
 
+			System.out.println(object1);
 
 		}
 		    catch (Exception e) 
@@ -50,7 +60,8 @@ public class get
     }
 }
 
-class ClientHandler extends Thread
+
+/*class ClientHandler extends Thread
 {
     final ObjectInputStream ois; 
     //Hashmap<String, String> totalfiles = new Hashmap<String, String>();
@@ -76,7 +87,8 @@ class ClientHandler extends Thread
         while (true)  
         { 
             try { 
-  
+  		
+		
                  
                 oos.writeUTF("Press 1 or 2 to Select \n"+
 			    "1. Search a File\n"+ 
@@ -93,7 +105,7 @@ class ClientHandler extends Thread
                     System.out.println("Connection closed"); 
                     break; 
                 } 
-		/*else
+		else
 		{
 		    System.out.println("Enter the File name that you want to Download \n");
 		    filename = ois.readUTF();
@@ -114,7 +126,7 @@ class ClientHandler extends Thread
 
 
 
-		}*/
+		}
 	     }
 	catch(Exception e)
 	{	
@@ -122,7 +134,7 @@ class ClientHandler extends Thread
 	}
      }
   }
-}
+}*/
 
 
 
